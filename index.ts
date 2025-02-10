@@ -12,6 +12,7 @@ const PORT: string | number = process.env.PORT || 5000;
 const app: Express = express();
 
 app.use(compression());
+app.use(express.json());
 app.use(errorHandler);
 app.use(requestLogger);
 app.use("/api", createRouter());
