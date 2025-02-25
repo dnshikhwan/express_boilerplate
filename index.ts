@@ -5,6 +5,7 @@ import { createRouter } from "./router";
 import { logger } from "./helpers/log.helper";
 import { requestLogger } from "./middlewares/request.middleware";
 import { errorHandler } from "./helpers/error.helper";
+import { prismaInit } from "./prisma/prisma";
 
 dotenv.config();
 
@@ -18,5 +19,6 @@ app.use(requestLogger);
 app.use("/api", createRouter());
 
 app.listen(PORT, () => {
+  prismaInit();
   logger.info(`Server is running on port ${PORT}`);
 });
