@@ -7,16 +7,18 @@ export const requestLogger = (
   next: NextFunction
 ) => {
   const { method, url } = req;
+  const start = Date.now();
 
   res.on("finish", () => {
     const { statusCode } = res;
+    const durationMs = Date.now() - start;
 
     if (statusCode && statusCode < 400) {
-      logger.info(`${method} [${statusCode}]: ${url}`);
+      logger.info(`${method} [${statusCode}] : ${url} (${durationMs}ms)`);
     }
 
     if (statusCode && statusCode >= 400 && statusCode <= 499) {
-      logger.error(`${method} [${statusCode}]: ${url}`);
+      logger.error(`${method} [${statusCode}] : ${url} (${durationMs}ms)`);
     }
   });
   next();

@@ -44,18 +44,86 @@ export const enum HttpStatusCode {
 }
 
 export const APP_MESSAGE = {
-  serverError: "An unexpected error occured. Please try again later.",
-  missingRequiredFields: "Missing required fields.",
+  // ─── General ──────────────────────────────────────────────────────
+  success: "Request completed successfully.",
+  serverError: "An unexpected error occurred. Please try again later.",
+  serviceUnavailable:
+    "Service temporarily unavailable. Please try again later.",
+  missingRequiredFields:
+    "Missing required fields. Please check your input and try again.",
+  invalidRequest: "Invalid request. Please review your input.",
+  forbidden: "You do not have permission to access this resource.",
+  notFound: "The requested resource was not found.",
+  methodNotAllowed: "The HTTP method is not allowed for this endpoint.",
 
-  // token
-  accessTokenExpired: "Access token expired.",
+  // ─── Authentication & Authorization ──────────────────────────────
+  signedUp: "User signed up successfully.",
+  signedIn: "User signed in successfully.",
+  signedOut: "User signed out successfully.",
+  invalidCredentials: "Invalid email address or password.",
+  userUnauthorized: "Unauthorized access. Please sign in to continue.",
+  accessTokenExpired: "Access token has expired. Please log in again.",
+  refreshTokenExpired: "Refresh token has expired. Please log in again.",
+  tokenInvalid: "Invalid or malformed token.",
+  policyError: "You must agree to the privacy policy to proceed.",
+  sessionExpired: "Session has expired. Please sign in again.",
 
-  // auth
-  policyError: "Please agree to our privacy policy.",
-  emailExists: "User with this email address already exists.",
-  signedUp: "User successfully signed up.",
-  signedIn: "User successfully signed in.",
-  invalidCredentials: "Invalid email or password.",
-  userUnauthorized:
-    "User unauthorized! Please sign in to access this resource.",
+  // ─── User ─────────────────────────────────────────────────────────
+  emailExists: "A user with this email address already exists.",
+  userCreated: "User account created successfully.",
+  userUpdated: "User profile updated successfully.",
+  userDeleted: "User account deleted successfully.",
+  userNotFound: "User not found.",
+  passwordChanged: "Password changed successfully.",
+  passwordResetEmailSent: "Password reset email sent successfully.",
+  passwordResetSuccess: "Password has been reset successfully.",
+  accountInactive: "Your account is inactive. Please contact support.",
+
+  // ─── Validation ───────────────────────────────────────────────────
+  validationFailed:
+    "Validation failed. Please correct the errors and try again.",
+  invalidEmailFormat: "Invalid email format.",
+  weakPassword: "Password is too weak. Please use a stronger password.",
+  passwordMismatch: "Passwords do not match.",
+  fieldTooShort: "One or more fields are too short.",
+  fieldTooLong: "One or more fields are too long.",
+  unsupportedFileType: "Unsupported file type.",
+  fileTooLarge: "Uploaded file exceeds the allowed size.",
+
+  // ─── Database ─────────────────────────────────────────────────────
+  databaseError: "A database error occurred. Please contact support.",
+  duplicateEntry: "Duplicate entry detected.",
+  resourceConflict: "Conflict with existing resource.",
+  transactionFailed: "Database transaction failed. Please try again.",
+
+  // ─── Files ────────────────────────────────────────────────────────
+  fileUploadSuccess: "File uploaded successfully.",
+  fileUploadFailed: "File upload failed. Please try again.",
+  fileNotFound: "Requested file not found.",
+  fileDeleted: "File deleted successfully.",
+
+  // ─── Payment ──────────────────────────────────────────────────────
+  paymentSuccess: "Payment processed successfully.",
+  paymentFailed: "Payment failed. Please try again.",
+  invalidPaymentMethod: "Invalid payment method provided.",
+  paymentPending: "Payment is pending confirmation.",
+  insufficientFunds: "Insufficient funds for this transaction.",
+
+  // ─── Admin & System ───────────────────────────────────────────────
+  accessDenied: "You do not have administrative privileges.",
+  settingsUpdated: "System settings updated successfully.",
+  maintenanceMode: "System is under maintenance. Please try again later.",
+
+  // ─── Rate Limiting & Security ─────────────────────────────────────
+  tooManyRequests: "Too many requests. Please slow down.",
+  suspiciousActivity: "Suspicious activity detected. Please try again later.",
+  accountLocked:
+    "Account has been temporarily locked due to multiple failed login attempts.",
+  ipBanned: "Access denied from this IP address.",
+
+  // ─── Miscellaneous ────────────────────────────────────────────────
+  operationNotSupported: "This operation is not supported.",
+  featureComingSoon: "This feature is coming soon.",
+  emailSent: "Email sent successfully.",
+  emailFailed: "Failed to send email. Please try again later.",
 };

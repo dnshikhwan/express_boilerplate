@@ -5,13 +5,10 @@ import { sendResponse } from "../helpers/response.helper";
 import { APP_MESSAGE, HTTP_RESPONSE_CODE } from "../constants";
 import prisma from "../prisma/prisma";
 import { configs } from "../configs";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
-export const signUp = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
+export const signUp = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const { name, email, password, privacy_policy } = req.body;
 
     if (!privacy_policy) {
@@ -53,7 +50,7 @@ export const signUp = async (
       data: {
         name,
         email,
-        password: hashedPassword,
+        password_hash: hashedPassword,
       },
     });
 
@@ -66,17 +63,11 @@ export const signUp = async (
         user: newUser,
       }
     );
-  } catch (err) {
-    next(err);
   }
-};
+);
 
-export const signIn = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
+export const signIn = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -103,7 +94,7 @@ export const signIn = async (
       );
     }
 
-    const decodedPassword = await argon.verify(user.password, password);
+    const decodedPassword = await argon.verify(user.password_hash, password);
 
     if (!decodedPassword) {
       return sendResponse(
@@ -136,7 +127,5 @@ export const signIn = async (
         token: accessToken,
       }
     );
-  } catch (err) {
-    next(err);
   }
-};
+);
